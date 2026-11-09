@@ -7,7 +7,7 @@ Next.js 15 (App Router) + SQLite (`better-sqlite3`). One process, one database f
 Requirements: Node.js 22 or newer, npm 10 or newer.
 
 ```bash
-git clone <GITHUB_URL> brandx-dealer
+git clone https://github.com/ShubhiGoel5/brandx-dealer brandx-dealer
 cd brandx-dealer
 npm install
 cp .env.example .env          # optional for local dev; see section 3

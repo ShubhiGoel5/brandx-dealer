@@ -40,7 +40,9 @@ Recommended: **Render web service**
 3. Set the environment variables below.
 4. Deploy. Health check path: `/`.
 
-Live URL: see the top of the TDD. If it is blank, the app has not been deployed yet and the local steps above are the way to review it.
+**Live URL: https://brandx-dealer.onrender.com** (Render, Docker runtime). The site URL for the sitemap and canonical links is taken from Render's `RENDER_EXTERNAL_URL`, or from `NEXT_PUBLIC_SITE_URL` if set.
+
+On Render's free plan there is no persistent disk and the instance sleeps when idle: the first request after idle can take about a minute, and anything created during review can reset when the instance restarts (the demo data is re-seeded automatically). Add a disk at `/app/data` on a paid plan to keep data.
 
 Scaling note: SQLite and the in-memory rate limiter assume a single instance. Moving to several instances means moving to Postgres and a shared rate-limit store (listed in the TDD under "what I would do next").
 

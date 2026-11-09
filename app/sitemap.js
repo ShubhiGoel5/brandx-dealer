@@ -1,7 +1,7 @@
 import { db } from '@/lib/db.js';
 
 export const dynamic = 'force-dynamic';
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || process.env.RENDER_EXTERNAL_URL || 'http://localhost:3000';
 
 export default function sitemap() {
   const d = db();

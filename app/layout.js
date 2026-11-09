@@ -1,5 +1,5 @@
 import './globals.css';
-import { getLang, makeT } from '@/lib/i18n.js';
+import { getLang } from '@/lib/i18n.js';
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
@@ -16,7 +16,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang={lang}>
       <body>
-        <a className="skip" href="#main">{makeT(lang)('go_home') && 'Skip to content'}</a>
+        <a className="skip" href="#main">Skip to content</a>
         {children}
       </body>
     </html>

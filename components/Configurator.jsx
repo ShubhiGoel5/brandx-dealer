@@ -17,8 +17,8 @@ export default function Configurator({ model, variants, quotes, cities, defaultC
   const city = cities.find((c) => c.id === cityId);
 
   return (
-    <div className="detail">
-      <div className="stack" style={{ '--gap': '40px' }}>
+    <div className="detail areas">
+      <div className="d-stage">
         <div className="stage">
           <CarArt body={model.body} colour={colour.hex} label={`${model.name} in ${colour.name}`} />
           <div className="spread" style={{ marginTop: 12 }}>
@@ -31,6 +31,9 @@ export default function Configurator({ model, variants, quotes, cities, defaultC
           </div>
         </div>
 
+      </div>
+
+      <div className="d-specs">
         <section aria-labelledby="specs-h">
           <h2 id="specs-h" style={{ marginBottom: 12 }}>{L.specs}</h2>
           <dl className="specs" style={{ margin: 0 }}>
@@ -46,7 +49,7 @@ export default function Configurator({ model, variants, quotes, cities, defaultC
         </section>
       </div>
 
-      <aside className="sticky stack" style={{ '--gap': '16px' }} aria-label={L.price_breakup}>
+      <aside className="d-aside sticky stack" style={{ '--gap': '16px' }} aria-label={L.price_breakup}>
         <div className="panel stack" style={{ '--gap': '18px' }}>
           <div className="form-grid">
             <div className="field">

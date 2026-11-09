@@ -31,7 +31,9 @@ export default async function UsedAdmin() {
                       {c.price < s.low || c.price > s.high ? <span className="badge warn">Listed price outside band</span> : <span className="badge ok">Within band</span>}</div>
                     : <div className="small muted">No suggestion — {s.reason}</div>;
                 }
-                return <UsedRow key={c.id} car={c} role={user.role} band={band} />;
+                // pass only what the row needs: keeps the registration number and inspection data out of the client payload
+                const row = { id: c.id, stock_id: c.stock_id, year: c.year, model: c.model, variant: c.variant, km: c.km, fuel: c.fuel, price: c.price, status: c.status, notes: c.notes };
+                return <UsedRow key={c.id} car={row} role={user.role} band={band} />;
               })}
             </tbody>
           </table>

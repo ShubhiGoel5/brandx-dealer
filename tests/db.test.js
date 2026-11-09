@@ -78,13 +78,11 @@ test('replies: discount language and invented prices are refused; allowed on-roa
   const owner = d.prepare('SELECT * FROM users WHERE id = ?').get(out.assigned_to);
   assert.throws(() => sendReply(d, out.id, 'I can offer a discount of 40,000 for you', owner, NOW), /discount/i);
   assert.throws(() => sendReply(d, out.id, 'Price is ₹9.99 lakh only', owner, NOW), /price table/i);
-  const total = 1245000 + 124500 + 38500 + 6500 + 12450 + 16000; // Lucknow ZX automatic
   const rule = d.prepare('SELECT * FROM price_rules WHERE variant_id = 3 AND city_id = 1').get();
   assert.equal(rule.ex_showroom, 1245000);
   sendReply(d, out.id, 'Hi! Happy to help. Would Saturday suit you for a test drive?', owner, NOW);
   assert.equal(d.prepare('SELECT status FROM leads WHERE id = ?').pluck().get(out.id), 'contacted');
   assert.ok(d.prepare('SELECT first_response_at FROM leads WHERE id = ?').pluck().get(out.id));
-  assert.ok(total > 0);
 });
 
 test('opted-out buyers get no acknowledgement and no replies', () => {

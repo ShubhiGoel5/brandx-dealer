@@ -27,15 +27,17 @@ export default function CarArt({ body = 'sedan', colour = '#b9bdc2', className =
         </linearGradient>
       </defs>
       <ellipse cx="400" cy="322" rx="340" ry="12" fill="#000" opacity=".12" />
+      <g transform="translate(400 0) scale(.84 1) translate(-400 0)">
       <path d={b.body} fill={colour} />
       <path d={b.body} fill={`url(#${id}s)`} />
       {b.glass.map((g, i) => <path key={i} d={g} fill="#0f1a24" opacity=".85" />)}
       <path d="M60 254 L748 254" stroke="#000" strokeOpacity=".16" strokeWidth="2" />
       <rect x="716" y="214" width="34" height="10" rx="4" fill="#f6f1d8" opacity=".95" />
       <rect x="58" y="214" width="24" height="10" rx="4" fill="#c1272d" opacity=".9" />
-      {[200, 600].map((cx) => (
+      </g>
+      {[222, 578].map((cx) => (
         <g key={cx}>
-          <circle cx={cx} cy="272" r="56" fill="#0d0e10" />
+          <circle cx={cx} cy="272" r="58" fill="#0d0e10" />
           <circle cx={cx} cy="272" r="33" fill="#d9dce0" />
           <circle cx={cx} cy="272" r="12" fill="#6b7078" />
         </g>

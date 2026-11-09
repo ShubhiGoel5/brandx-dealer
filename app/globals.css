@@ -183,3 +183,8 @@ table.data td { padding: 8px 12px; border-top: 1px solid var(--line); vertical-a
 @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
 .hero-grid .hero-art { margin-top: 0; }
 .hero h1 { max-width: 16ch; }
+
+/* detail layout: on phones the price panel follows the picture, before the specs */
+.detail.areas { grid-template-areas: "stage aside" "specs aside"; grid-template-rows: auto 1fr; row-gap: 40px; }
+.d-stage { grid-area: stage; } .d-specs { grid-area: specs; } .d-aside { grid-area: aside; }
+@media (max-width: 960px) { .detail.areas { grid-template-areas: "stage" "aside" "specs"; grid-template-rows: auto; row-gap: 28px; } }

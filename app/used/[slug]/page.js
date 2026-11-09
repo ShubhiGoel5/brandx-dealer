@@ -46,8 +46,8 @@ export default async function UsedDetail({ params }) {
     <SiteShell current="used">
       <div className="container" style={{ paddingTop: 32 }}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
-        <div className="detail">
-          <div className="stack" style={{ '--gap': '36px' }}>
+        <div className="detail areas">
+          <div className="d-stage stack" style={{ '--gap': '28px' }}>
             <div>
               <div className="row" style={{ marginBottom: 8 }}>
                 <span className="eyebrow">{car.stock_id}</span>
@@ -60,6 +60,8 @@ export default async function UsedDetail({ params }) {
             </div>
             <div className="stage"><CarArt body={car.body} colour={colourHex(car.colour)} label={carTitle(car)} /></div>
 
+          </div>
+          <div className="d-specs stack" style={{ '--gap': '36px' }}>
             <section aria-labelledby="facts-h">
               <h2 id="facts-h" style={{ marginBottom: 12 }}>{t('specs')}</h2>
               <dl className="specs" style={{ margin: 0 }}>
@@ -90,7 +92,7 @@ export default async function UsedDetail({ params }) {
             </section>
           </div>
 
-          <aside className="sticky stack" style={{ '--gap': '16px' }}>
+          <aside className="d-aside sticky stack" style={{ '--gap': '16px' }}>
             <div className="panel stack" style={{ '--gap': '16px' }}>
               <div><div className="small muted">Brand X Certified</div><div className="price-hero">{inr(car.price)}</div></div>
               {reserved && <p className="notice warn">{t('reserved_note')}</p>}

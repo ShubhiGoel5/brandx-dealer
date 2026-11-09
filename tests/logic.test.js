@@ -130,3 +130,9 @@ test('slots: respects 2h lead time, taken slots, and rejects illegal slots', () 
   assert.equal(isLegalSlot('2026-11-30T12:00:00+05:30', now), false); // beyond window
   assert.equal(isLegalSlot('2026-11-10T12:30:00+05:30', now), false); // not on the hour
 });
+
+test('enquiry schema: missing consent gives a human-readable message', () => {
+  const r = enquirySchema.safeParse({ name: 'Asha', phone: '9876543210', email: '' });
+  assert.equal(r.success, false);
+  assert.equal(r.error.issues.find((i) => i.path[0] === 'consent').message, 'Please accept the consent to continue');
+});

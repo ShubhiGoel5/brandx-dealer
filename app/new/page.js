@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import SiteShell from '@/components/SiteShell.jsx';
-import CarArt from '@/components/CarArt.jsx';
+import CarImage from '@/components/CarImage.jsx';
 import { listModels, fromPrices } from '@/lib/queries.js';
 import { getLang, makeT } from '@/lib/i18n.js';
 import { inrShort } from '@/lib/format.js';
@@ -24,7 +24,7 @@ export default async function NewCars() {
           <div className="grid">
             {models.map((m) => (
               <Link key={m.id} href={`/new/${m.slug}`} className="card">
-                <div className="art"><CarArt body={m.body} colour={m.colours[0].hex} label={m.name} /></div>
+                <div className="art"><CarImage model={m} alt={m.name} sizes="(max-width: 700px) 100vw, 320px" /></div>
                 <div className="body">
                   <h3>{m.name}</h3>
                   <p className="muted small">{lang === 'hi' ? m.tagline_hi : m.tagline_en}</p>

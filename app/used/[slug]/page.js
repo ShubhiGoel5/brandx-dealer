@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import SiteShell from '@/components/SiteShell.jsx';
-import CarArt from '@/components/CarArt.jsx';
+import CarImage from '@/components/CarImage.jsx';
 import EmiCalc from '@/components/EmiCalc.jsx';
 import EnquiryForm from '@/components/EnquiryForm.jsx';
 import { colourHex } from '@/components/UsedCard.jsx';
@@ -58,7 +58,7 @@ export default async function UsedDetail({ params }) {
               <h1 style={{ fontSize: 'clamp(1.8rem,4.4vw,3rem)' }}>{carTitle(car)}</h1>
               <div className="facts" style={{ marginTop: 10 }}><span>{km(car.km)}</span><span>{car.fuel}</span><span>{car.transmission}</span><span>{ownerLabel(t, car.owners)}</span></div>
             </div>
-            <div className="stage"><CarArt body={car.body} colour={colourHex(car.colour)} label={carTitle(car)} /></div>
+            <div className="stage"><CarImage model={{ body: car.body, photo: car.model_photo, photo_fit: car.model_photo_fit }} colour={colourHex(car.colour)} alt={carTitle(car)} priority /></div>
 
           </div>
           <div className="d-specs stack" style={{ '--gap': '36px' }}>

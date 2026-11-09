@@ -188,3 +188,14 @@ table.data td { padding: 8px 12px; border-top: 1px solid var(--line); vertical-a
 .detail.areas { grid-template-areas: "stage aside" "specs aside"; grid-template-rows: auto 1fr; row-gap: 40px; }
 .d-stage { grid-area: stage; } .d-specs { grid-area: specs; } .d-aside { grid-area: aside; }
 @media (max-width: 960px) { .detail.areas { grid-template-areas: "stage" "aside" "specs"; grid-template-rows: auto; row-gap: 28px; } }
+
+/* photography */
+.photo { position: relative; width: 100%; overflow: hidden; border-radius: 12px; background: var(--surface); }
+.photo.cutout { background: #fff; }
+.card .art:has(.photo) { padding: 0; }
+.card .art .photo { border-radius: 0; }
+.stage:has(.photo) { padding: 0; overflow: hidden; background: var(--surface); }
+.stage .photo { border-radius: 0; }
+.hero-art:has(.photo) { padding: 0; overflow: hidden; }
+.swatch-note { display: flex; align-items: center; gap: 10px; padding: 14px 18px; flex-wrap: wrap; }
+.dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; box-shadow: 0 0 0 1px var(--line); }

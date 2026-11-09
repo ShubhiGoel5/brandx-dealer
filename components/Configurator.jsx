@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import CarArt from './CarArt.jsx';
+import CarImage from './CarImage.jsx';
 import EmiCalc from './EmiCalc.jsx';
 import EnquiryForm from './EnquiryForm.jsx';
 import { inr } from '@/lib/format.js';
@@ -20,7 +20,12 @@ export default function Configurator({ model, variants, quotes, cities, defaultC
     <div className="detail areas">
       <div className="d-stage">
         <div className="stage">
-          <CarArt body={model.body} colour={colour.hex} label={`${model.name} in ${colour.name}`} />
+          <CarImage model={model} colour={colour.hex} alt={`${model.name} in ${colour.name}`} priority />
+          {model.photo ? (
+            <div className="swatch-note small muted" aria-label={L.colour}>
+              {model.colours.map((c) => <span key={c.name} className="row" style={{ gap: 6 }}><i className="dot" style={{ background: c.hex }} />{c.name}</span>)}
+            </div>
+          ) : (
           <div className="spread" style={{ marginTop: 12 }}>
             <div className="swatches" role="group" aria-label={L.colour}>
               {model.colours.map((c) => (
@@ -29,6 +34,7 @@ export default function Configurator({ model, variants, quotes, cities, defaultC
             </div>
             <span className="small muted" aria-live="polite">{colour.name}</span>
           </div>
+          )}
         </div>
 
       </div>

@@ -90,3 +90,5 @@ Buyers do not sign in: the public site needs no account.
 - Every staff server action re-checks sign-in and role; consultants can only open their own leads (others return 404).
 - All inputs are validated on the server (zod); SQL is parameterised; honeypot and per-IP rate limits protect public forms and sign-in.
 - Full registration numbers are never sent to the public pages.
+
+

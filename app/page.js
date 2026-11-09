@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import SiteShell from '@/components/SiteShell.jsx';
-import CarArt from '@/components/CarArt.jsx';
+import CarImage from '@/components/CarImage.jsx';
 import { UsedCard } from '@/components/UsedCard.jsx';
 import { listModels, fromPrices, listUsed } from '@/lib/queries.js';
 import { getLang, makeT } from '@/lib/i18n.js';
@@ -28,7 +28,7 @@ export default async function Home() {
               <Link className="btn ghost" href="/new">{t('cta_browse')}</Link>
             </div>
           </div>
-          {hero && <div className="hero-art"><CarArt body={hero.body} colour={hero.colours[0].hex} label={hero.name} /></div>}
+          {hero && <div className="hero-art"><CarImage model={hero} alt={hero.name} priority sizes="(max-width: 900px) 100vw, 600px" /></div>}
         </div>
       </section>
 
@@ -37,7 +37,7 @@ export default async function Home() {
         <div className="grid">
           {models.map((m) => (
             <Link key={m.id} href={`/new/${m.slug}`} className="card">
-              <div className="art"><CarArt body={m.body} colour={m.colours[0].hex} label={m.name} /></div>
+              <div className="art"><CarImage model={m} alt={m.name} sizes="(max-width: 700px) 100vw, 320px" /></div>
               <div className="body">
                 <h3>{m.name}</h3>
                 <div className="price">{prices[m.id] && <><small>{t('from')} </small>{inrShort(prices[m.id].total)} <small>{t('on_road')}</small></>}</div>

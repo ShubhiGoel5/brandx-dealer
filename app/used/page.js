@@ -23,7 +23,7 @@ export default async function UsedList({ searchParams }) {
   return (
     <SiteShell current="used">
       <div className="container section" style={{ paddingTop: 40 }}>
-        <div className="stack" style={{ '--gap': '8px', marginBottom: 28 }}>
+        <div className="stack hx" style={{ '--gap': '8px', marginBottom: 28 }}>
           <h1>{t('used_cars')}</h1><p className="muted">{t('used_sub')}</p>
         </div>
         <form className="filters" method="get" aria-label={t('filter')}>

@@ -5,6 +5,7 @@ import CarImage from './CarImage.jsx';
 import EmiCalc from './EmiCalc.jsx';
 import EnquiryForm from './EnquiryForm.jsx';
 import { inr } from '@/lib/format.js';
+import { Tween } from './Motion.jsx';
 
 /** Model page body: colour, variant and city selection drive the picture, the on-road breakup and the EMI. */
 export default function Configurator({ model, variants, quotes, cities, defaultCityId, labels: L, lang }) {
@@ -18,7 +19,7 @@ export default function Configurator({ model, variants, quotes, cities, defaultC
 
   return (
     <div className="detail areas">
-      <div className="d-stage">
+      <div className="d-stage" data-reveal>
         <div className="stage">
           <CarImage model={model} colour={colour.hex} alt={`${model.name} in ${colour.name}`} priority />
           {model.photo ? (
@@ -39,7 +40,7 @@ export default function Configurator({ model, variants, quotes, cities, defaultC
 
       </div>
 
-      <div className="d-specs">
+      <div className="d-specs" data-reveal>
         <section aria-labelledby="specs-h">
           <h2 id="specs-h" style={{ marginBottom: 12 }}>{L.specs}</h2>
           <dl className="specs" style={{ margin: 0 }}>
@@ -76,7 +77,7 @@ export default function Configurator({ model, variants, quotes, cities, defaultC
             <>
               <div>
                 <div className="small muted">{L.total_on_road} · {city.name}</div>
-                <div className="price-hero" aria-live="polite">{inr(q.total)}</div>
+                <div className="price-hero" aria-live="polite" aria-label={inr(q.total)}><Tween value={q.total} format="inr" /></div>
               </div>
               <table className="breakup">
                 <tbody>

@@ -1,5 +1,6 @@
 import './globals.css';
 import { getLang } from '@/lib/i18n.js';
+import { MotionRoot } from '@/components/Motion.jsx';
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || process.env.RENDER_EXTERNAL_URL || 'http://localhost:3000';
 
@@ -14,8 +15,14 @@ export const viewport = { width: 'device-width', initialScale: 1, themeColor: '#
 export default async function RootLayout({ children }) {
   const lang = await getLang();
   return (
-    <html lang={lang}>
+    <html lang={lang} suppressHydrationWarning>
+      <head>
+        {/* enables scroll-reveal styles before first paint; content stays visible if scripts never run */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('rv')" }} />
+        <noscript><style>{'[data-reveal]{opacity:1!important;transform:none!important}'}</style></noscript>
+      </head>
       <body>
+        <MotionRoot />
         <a className="skip" href="#main">Skip to content</a>
         {children}
       </body>

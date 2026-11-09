@@ -16,7 +16,7 @@ export default async function NewCars() {
   return (
     <SiteShell current="new">
       <div className="container section" style={{ paddingTop: 40 }}>
-        <div className="stack" style={{ '--gap': '8px', marginBottom: 36 }}>
+        <div className="stack hx" style={{ '--gap': '8px', marginBottom: 36 }}>
           <h1>{t('new_cars')}</h1>
           <p className="muted">{t('from')} · {t('from_price_note')}</p>
         </div>

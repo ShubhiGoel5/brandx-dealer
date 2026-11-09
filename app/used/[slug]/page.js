@@ -47,7 +47,7 @@ export default async function UsedDetail({ params }) {
       <div className="container" style={{ paddingTop: 32 }}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
         <div className="detail areas">
-          <div className="d-stage stack" style={{ '--gap': '28px' }}>
+          <div data-reveal className="d-stage stack" style={{ '--gap': '28px' }}>
             <div>
               <div className="row" style={{ marginBottom: 8 }}>
                 <span className="eyebrow">{car.stock_id}</span>
@@ -61,7 +61,7 @@ export default async function UsedDetail({ params }) {
             <div className="stage"><CarImage model={{ body: car.body, photo: car.model_photo, photo_fit: car.model_photo_fit }} colour={colourHex(car.colour)} alt={carTitle(car)} priority /></div>
 
           </div>
-          <div className="d-specs stack" style={{ '--gap': '36px' }}>
+          <div data-reveal className="d-specs stack" style={{ '--gap': '36px' }}>
             <section aria-labelledby="facts-h">
               <h2 id="facts-h" style={{ marginBottom: 12 }}>{t('specs')}</h2>
               <dl className="specs" style={{ margin: 0 }}>

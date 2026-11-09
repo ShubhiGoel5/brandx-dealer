@@ -23,7 +23,7 @@ export default async function TestDrive({ searchParams }) {
   return (
     <SiteShell current="drive">
       <div className="container section" style={{ paddingTop: 40 }}>
-        <div className="stack" style={{ '--gap': '8px', marginBottom: 36 }}><h1>{t('book_title')}</h1><p className="muted">{t('book_sub')}</p></div>
+        <div className="stack hx" style={{ '--gap': '8px', marginBottom: 36 }}><h1>{t('book_title')}</h1><p className="muted">{t('book_sub')}</p></div>
         <BookingFlow cars={withTaken} days={days} serverNow={now.toISOString()} preselect={typeof sp.model === 'string' ? sp.model : null} labels={labels} lang={lang} />
       </div>
     </SiteShell>

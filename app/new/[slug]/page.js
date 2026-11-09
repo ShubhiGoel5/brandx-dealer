@@ -39,7 +39,7 @@ export default async function ModelPage({ params }) {
     <SiteShell current="new">
       <div className="container" style={{ paddingTop: 32 }}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
-        <div className="stack" style={{ '--gap': '8px', marginBottom: 28 }}>
+        <div className="stack hx" style={{ '--gap': '8px', marginBottom: 28 }}>
           <span className="eyebrow">{t('nav_new')}</span>
           <h1>{model.name}</h1>
           <p className="lead muted" style={{ fontSize: '1.2rem' }}>{lang === 'hi' ? model.tagline_hi : model.tagline_en}</p>

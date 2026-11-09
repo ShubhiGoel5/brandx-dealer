@@ -70,6 +70,17 @@ test('used price: median band from comparables, adjusted for km', () => {
   assert.ok(r.mid > 830000 && r.mid < 870000);
   assert.equal(r.confidence, 'low'); // only 4 comparables
 });
+test('used price: other variants do not pollute the band', () => {
+  const car = { model_id: 1, variant: 'VX', fuel: 'Diesel', year: 2022, km: 41200 };
+  const same = [sale(40000, 850000), sale(45000, 840000), sale(38000, 860000)];
+  const other = [sale(41000, 1300000, 2022, 'ZX automatic'), sale(42000, 1290000, 2022, 'ZX automatic')];
+  const r = suggestUsedPrice(car, [...same, ...other]);
+  assert.equal(r.ok, true);
+  assert.equal(r.n, 3);
+  assert.ok(r.high < 900000);
+  // with only other variants available there is no suggestion
+  assert.equal(suggestUsedPrice(car, other).ok, false);
+});
 test('used price: refuses to guess with too few comparables or different fuel', () => {
   const car = { model_id: 1, variant: 'VX', fuel: 'Diesel', year: 2022, km: 41200 };
   assert.equal(suggestUsedPrice(car, [sale(40000, 850000), sale(45000, 840000)]).ok, false);

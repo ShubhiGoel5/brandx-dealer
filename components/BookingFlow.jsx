@@ -1,5 +1,5 @@
 'use client';
-import { useActionState, useMemo, useState } from 'react';
+import { useActionState, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { bookDrive } from '@/app/actions/public.js';
 import { slotsForDay } from '@/lib/slots.js';
@@ -16,7 +16,9 @@ export default function BookingFlow({ cars, days, serverNow, preselect, labels: 
   const [slot, setSlot] = useState('');
   const [state, action, pending] = useActionState(bookDrive, null);
   const car = cars.find((c) => c.id === carId);
-  const taken = useMemo(() => new Set(car?.taken ?? []), [car]);
+  // slots the server told us were taken after this page loaded (someone else booked first)
+  const [lost, setLost] = useState([]);
+  const taken = useMemo(() => new Set([...(car?.taken ?? []), ...lost.filter((l) => l.carId === carId).map((l) => l.slot)]), [car, lost, carId]);
   const slots = useMemo(() => slotsForDay(day, taken, now), [day, taken, now]);
   const e = state?.errors ?? {};
   const v = state?.values ?? {};
@@ -24,8 +26,11 @@ export default function BookingFlow({ cars, days, serverNow, preselect, labels: 
   const bySite = cars.reduce((m, c) => ((m[c.showroom] ??= []).push(c), m), {});
   const freeCount = (d) => slotsForDay(d, taken, now).filter((s) => s.available).length;
 
-  // If the server says the slot was just taken, clear the selection so the buyer picks another.
-  const slotGone = state?.slotTaken && slot && slot === v.slot;
+  // If the server says the slot was just taken, mark it taken here and ask the buyer to pick another.
+  const slotGone = !!state?.slotTaken;
+  useEffect(() => {
+    if (state?.slotTaken && v.slot) { setLost((l) => [...l, { carId: Number(v.demo_car_id), slot: v.slot }]); setSlot(''); }
+  }, [state]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <form action={action} className="steps" noValidate>

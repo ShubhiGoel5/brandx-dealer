@@ -31,10 +31,10 @@ export default async function Booking({ params }) {
           <CarArt body={b.body} colour={colourHex(b.colour)} label={b.car_label} />
           <div className="specs">
             <div><dt>{b.model}</dt><dd>{b.variant}</dd></div>
-            <div><dt>{t('step_time')}</dt><dd>{fmtDay(b.slot_start, loc)}, {fmtTime(b.slot_start, loc)}</dd></div>
+            <div><dt>{t('when')}</dt><dd>{fmtDay(b.slot_start, loc)}, {fmtTime(b.slot_start, loc)}</dd></div>
             <div><dt>{t('showroom')}</dt><dd>{b.showroom}</dd></div>
             <div><dt>&nbsp;</dt><dd className="small" style={{ fontWeight: 400 }}>{b.address}</dd></div>
-            {b.consultant && <div><dt>{t('a_consultant')}</dt><dd>{b.consultant}</dd></div>}
+            {b.consultant && <div><dt>{t('your_consultant')}</dt><dd>{b.consultant}</dd></div>}
             <div><dt>{t('name')}</dt><dd>{b.name}</dd></div>
           </div>
           {!cancelled && <p className="notice">{t('add_cal')}</p>}

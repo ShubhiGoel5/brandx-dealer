@@ -11,7 +11,8 @@ export default function BookingFlow({ cars, days, serverNow, preselect, labels: 
   const loc = lang === 'hi' ? 'hi-IN' : 'en-IN';
   const first = cars.find((c) => c.model_slug === preselect) ?? cars[0];
   const [carId, setCarId] = useState(first?.id);
-  const [day, setDay] = useState(days[0]);
+  // open on the first day that still has a free slot (late in the day, "today" may be full)
+  const [day, setDay] = useState(() => days.find((d) => slotsForDay(d, new Set(first?.taken ?? []), new Date(serverNow)).some((s) => s.available)) ?? days[0]);
   const [slot, setSlot] = useState('');
   const [state, action, pending] = useActionState(bookDrive, null);
   const car = cars.find((c) => c.id === carId);

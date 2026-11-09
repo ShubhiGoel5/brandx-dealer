@@ -141,6 +141,9 @@ test('AI analysis: rule-based path stores a safe draft; unknown car => low confi
   const rich = createLead(d, { ...base, phone: '9833300002', message: 'Want ZX automatic, budget 15 lakh, ready to buy this week', model_id: 1, variant_id: 3, city_id: 1 }, { now: NOW });
   const r2 = await analyseLead(d, rich.id, { now: NOW, useLlm: false });
   assert.equal(r2.intent, 'hot');
+  assert.ok(r2.needs.some((n) => /Budget/.test(n)), 'budget in the message is picked up');
+  assert.ok(!r2.questions.some((q) => /budget/i.test(q)), 'does not re-ask a known budget');
+  assert.ok(r2.draft.startsWith('Hi Test,'));
   assert.ok(r2.draft.includes('on-road in Lucknow'));
   assert.ok(r2.draft.includes('prices may change'));
   assert.ok(d.prepare('SELECT ai FROM leads WHERE id = ?').pluck().get(rich.id).includes('"intent":"hot"'));

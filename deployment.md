@@ -92,3 +92,7 @@ Buyers do not sign in: the public site needs no account.
 - Full registration numbers are never sent to the public pages.
 
 
+
+## 7. Demo images
+
+The car photos in `public/cars/` are third-party press images used for demonstration only. They are not licensed for this project: replace them with the dealer's own photography before real use. A model without a photo falls back to a generated illustration.
